@@ -12,10 +12,14 @@ from time import sleep
 
 class Creator:
     def __init__(
-        self, subset_name=None, item_of_interest=None
+        self, subset_name=None, item_of_interest=None, db_csv=None
     ):
         self.subset_name = subset_name
         self.item_of_interest = item_of_interest
+        if db_csv not in ('db', 'csv'):
+         raise ValueError()
+         print("Allowed values are either 'db' or 'csv'")
+        self.db_csv = db_csv
 
     def create_frame(self):
         dataframe = pd.DataFrame(
@@ -51,9 +55,12 @@ class Creator:
                 axis=1,
                 inplace=True,
             )
-        dataframe.to_csv(
-            f"{self.subset_name}.csv", index=False
-        )
+        if self.db_csv == "csv":
+            dataframe.to_csv(
+                    f"{self.subset_name}.csv", index=False
+            )
+        else:
+            return dataframe
 
     def update_frame(self):
         dataframe = pd.read_csv(f"{self.subset_name}.csv")
@@ -83,6 +90,9 @@ class Creator:
                 ],
                 inplace=True,
             )
-        dataframe.to_csv(
-            f"{self.subset_name}.csv", index=True
-        )
+            if self.db_csv == "csv":
+                dataframe.to_csv(
+                        f"{self.subset_name}.csv", index=False
+                    )
+            else:
+                return dataframe
