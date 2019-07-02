@@ -16,24 +16,33 @@ Base = declarative_base()
 
 
 class Items(Base):
-   __tablename__ = "customers_rfm"
+   __tablename__ = tablename
    id = Column(
        "id", Integer, primary_key=True, autoincrement=True
    )
-   email = Column("email", String, unique=False)
-   recency = Column("recency", Integer, unique=False)
-   frequency = Column("frequency", Integer, unique=False)
-   monetary_value = Column(
-       "monetary_value", Float, unique=False
+   buy_price_max = Column("buy_price_max", Integer, unique=False)
+   buy_price_min = Column("buy_price_min", Integer, unique=False)
+   city = Column("city", String, unique=False)
+   item_id = Column(
+       "item_id", String, unique=False
    )
-   last_purchase = Column(
-       "last_purchase", Date, unique=False
+   quality = Column(
+       "quality", Integer, unique=False
    )
-   first_purchase = Column(
-       "first_purchase", Date, unique=False
+   sell_price_max = Column(
+       "sell_price_max", Integer, unique=False
+   )
+   sell_price_max_date = Column(
+       "sell_price_max_date", Date, unique=False
+   )
+   sell_price_max = Column(
+       "sell_price_max", Integer, unique=False
+   )
+   sell_price_max = Column(
+       "sell_price_max", Integer, unique=False
    )
 
-
+       'sell_price_max_date', 'sell_price_min', 'sell_price_min_date'
 
 class PostgreSQL:
    def __init__(
@@ -44,7 +53,8 @@ class PostgreSQL:
        schema,
        my_dataframe=None,
        data_types=None,
-   :disappointed:
+       tablename=None
+   ):
        self.username = username
        self.password = password
        self.host = host
@@ -58,6 +68,7 @@ class PostgreSQL:
            },
        )
        self.index_name = "id"
+       self.tablename = tablename
 
    def check_status(self):
        return self.engine.connect()
@@ -65,8 +76,10 @@ class PostgreSQL:
    def get_data(self, table_to_get):
        metadata = MetaData(self.engine)
        metadata.reflect()
-
-       table = Table(
+       
+       tablename = self.tablename
+       
+       table = Items(
            f"{table_to_get}",
            metadata,
            autoload=True,
