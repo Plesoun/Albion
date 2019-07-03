@@ -35,14 +35,13 @@ class Items(Base):
    sell_price_max_date = Column(
        "sell_price_max_date", Date, unique=False
    )
-   sell_price_max = Column(
-       "sell_price_max", Integer, unique=False
+   sell_price_min = Column(
+       "sell_price_min", Integer, unique=False
    )
-   sell_price_max = Column(
-       "sell_price_max", Integer, unique=False
+   sell_price_min_date = Column(
+       "sell_price_min_date", Date, unique=False
    )
 
-       'sell_price_max_date', 'sell_price_min', 'sell_price_min_date'
 
 class PostgreSQL:
    def __init__(

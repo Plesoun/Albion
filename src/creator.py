@@ -5,9 +5,7 @@
 """
 
 import requests
-import json
 import pandas as pd
-from time import sleep
 
 
 class Creator:
