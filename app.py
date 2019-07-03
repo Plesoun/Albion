@@ -8,22 +8,8 @@ from src.database import PostgreSQL
 from src.database import Items
 import os
 
-wood = [
-    "T6_PLANKS",
-    "T7_PLANKS",
-    "T6_PLANKS_LEVEL1@1",
-    "T7_PLANKS_LEVEL1@1",
-    "T6_PLANKS_LEVEL2@2",
-    "T7_PLANKS_LEVEL2@2",
-    "T6_WOOD",
-    "T7_WOOD",
-    "T6_WOOD_LEVEL1@1",
-    "T7_WOOD_LEVEL1@1",
-    "T6_WOOD_LEVEL2@2",
-    "T7_WOOD_LEVEL2@2",
-]
 
-hides = [
+tracked_items = [
     "T6_HIDE",
     "T7_HIDE",
     "T6_HIDE_LEVEL1@1",
@@ -36,9 +22,18 @@ hides = [
     "T6_LEATHER_LEVEL1@1",
     "T5_LEATHER_LEVEL2@2",
     "T6_LEATHER_LEVEL2@2",
-]
-
-animals = [
+    "T6_PLANKS",
+    "T7_PLANKS",
+    "T6_PLANKS_LEVEL1@1",
+    "T7_PLANKS_LEVEL1@1",
+    "T6_PLANKS_LEVEL2@2",
+    "T7_PLANKS_LEVEL2@2",
+    "T6_WOOD",
+    "T7_WOOD",
+    "T6_WOOD_LEVEL1@1",
+    "T7_WOOD_LEVEL1@1",
+    "T6_WOOD_LEVEL2@2",
+    "T7_WOOD_LEVEL2@2",
     "T6_FARM_HORSE_BABY",
     "T4_FARM_HORSE_BABY",
     "T5_FARM_HORSE_BABY",
@@ -49,18 +44,12 @@ animals = [
     "T3_FARM_HORSE_GROWN",
     "T6_FARM_DIREWOLF_BABY",
     "T6_FARM_DIREWOLF_GROWN",
-]
-
-stone = [
     "T6_ROCK",
     "T7_ROCK",
     "T5_ROCK",
     "T6_STONEBLOCK",
     "T7_STONEBLOCK",
     "T5_STONEBLOCK",
-]
-
-consumables = [
     "T5_MEAL_OMELETTE",
     "T7_MEAL_OMELETTE",
     "T6_MEAL_STEW",
@@ -69,9 +58,6 @@ consumables = [
     "T5_MEAL_PIE",
     "T6_MEAL_SANDWICH",
     "T4_MEAL_SANDWICH",
-]
-
-crops = [
     "T1_CARROT",
     "T1_FARM_CARROT_SEED",
     "T7_FARM_CORN_SEED",
@@ -83,7 +69,7 @@ crops = [
 ]
 
 test = Creator(
-    subset_name="wood", item_of_interest=wood, db_csv="db",
+    subset_name="tracked_items", item_of_interest=tracked_items, db_csv="db",
 ).create_frame()
 
 PostgreSQL(username="postgres", password="testtest", host="localhost:5433/custom_projects",

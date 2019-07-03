@@ -60,7 +60,7 @@ class Creator:
         else:
             return dataframe
 
-    def update_frame(self):
+    def update_csv(self):
         dataframe = pd.read_csv(f"{self.subset_name}.csv")
 
         for j in self.item_of_interest:
@@ -88,9 +88,7 @@ class Creator:
                 ],
                 inplace=True,
             )
-            if self.db_csv == "csv":
-                dataframe.to_csv(
+            dataframe.to_csv(
                         f"{self.subset_name}.csv", index=False
                     )
-            else:
-                return dataframe
+
