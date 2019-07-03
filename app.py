@@ -3,7 +3,10 @@
 """
 @author: jakub
 """
-from src import Creator
+from src.creator import Creator
+from src.database import PostgreSQL
+from src.database import Items
+import os
 
 wood = [
     "T6_PLANKS",
@@ -79,22 +82,9 @@ crops = [
     "T8_FARM_PUMPKIN_SEED",
 ]
 
+test = Creator(
+    subset_name="wood", item_of_interest=wood, db_csv="db",
+).create_frame()
 
-Creator(
-    subset_name="wood", item_of_interest=wood
-).update_frame()
-Creator(
-    subset_name="hides", item_of_interest=hides
-).update_frame()
-Creator(
-    subset_name="animals", item_of_interest=animals
-).update_frame()
-Creator(
-    subset_name="stone", item_of_interest=stone
-).update_frame()
-Creator(
-    subset_name="consumables", item_of_interest=consumables
-).update_frame()
-Creator(
-    subset_name="crops", item_of_interest=crops
-).update_frame()
+PostgreSQL(username="postgres", password="testtest", host="localhost:5433/custom_projects",
+           schema="albion",).save_data(table_to_save=test, template=Items)
