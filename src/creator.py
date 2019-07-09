@@ -10,13 +10,13 @@ import pandas as pd
 
 class Creator:
     def __init__(
-        self, subset_name=None, item_of_interest=None, db_csv=None
+            self, subset_name=None, item_of_interest=None, db_csv=None
     ):
         self.subset_name = subset_name
         self.item_of_interest = item_of_interest
         if db_csv not in ('db', 'csv'):
-         raise ValueError()
-         print("Allowed values are either 'db' or 'csv'")
+            raise ValueError()
+            print("Allowed values are either 'db' or 'csv'")
         self.db_csv = db_csv
 
     def create_frame(self):
@@ -55,7 +55,7 @@ class Creator:
             )
         if self.db_csv == "csv":
             dataframe.to_csv(
-                    f"{self.subset_name}.csv", index=False
+                f"{self.subset_name}.csv", index=False
             )
         else:
             return dataframe
@@ -89,6 +89,5 @@ class Creator:
                 inplace=True,
             )
             dataframe.to_csv(
-                        f"{self.subset_name}.csv", index=False
-                    )
-
+                f"{self.subset_name}.csv", index=False
+            )

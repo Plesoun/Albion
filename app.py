@@ -72,5 +72,5 @@ test = Creator(
     subset_name="tracked_items", item_of_interest=tracked_items, db_csv="db",
 ).create_frame()
 
-PostgreSQL(username="postgres", password="testtest", host="localhost:5433/custom_projects",
+PostgreSQL(username=os.environ["DB_USERNAME"], password=os.environ["DB_PASSWORD"], host=os.environ["DB_HOST"],
            schema="albion",).save_data(table_to_save=test, template=Items)
