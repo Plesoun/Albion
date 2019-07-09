@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 
-"""
-@author: jakub
-"""
 from src.creator import Creator
 from src.database import PostgreSQL
 from src.database import Items

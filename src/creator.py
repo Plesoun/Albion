@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-
-"""
-@author: jakub
-"""
-
 import requests
 import pandas as pd
 
