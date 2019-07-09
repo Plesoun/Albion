@@ -68,9 +68,13 @@ tracked_items = [
     "T8_FARM_PUMPKIN_SEED",
 ]
 
-test = Creator(
-    subset_name="tracked_items", item_of_interest=tracked_items, db_csv="db",
+frame = Creator(
+    subset_name="tracked_items", item_of_interest=tracked_items, db_csv="db"
 ).create_frame()
 
-PostgreSQL(username=os.environ["DB_USERNAME"], password=os.environ["DB_PASSWORD"], host=os.environ["DB_HOST"],
-           schema="albion",).save_data(table_to_save=test, template=Items)
+PostgreSQL(
+    username=os.environ["DB_USERNAME"],
+    password=os.environ["DB_PASSWORD"],
+    host=os.environ["DB_HOST"],
+    schema="albion",
+).save_data(table_to_save=frame, template=Items)
